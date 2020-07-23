@@ -7,17 +7,24 @@ import com.desarrollodroide.simplecleancode.domain.DummyObjectRepository
 import com.desarrollodroide.simplecleancode.model.DummyObject
 import com.desarrollodroide.simplecleancode.model.Resource
 import com.nhaarman.mockitokotlin2.*
+import junit.framework.Assert.assertEquals
+import junit.framework.Assert.assertNull
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.TestCoroutineScope
 import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.setMain
+import org.hamcrest.MatcherAssert.assertThat
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
 import org.junit.runner.RunWith
+import org.mockito.ArgumentMatcher
+import org.mockito.ArgumentMatchers
+import org.mockito.Mock
 import org.powermock.api.mockito.PowerMockito
 import org.powermock.core.classloader.annotations.PrepareForTest
 import org.powermock.modules.junit4.PowerMockRunner
@@ -31,9 +38,7 @@ class MainViewModelTest {
     private val testCoroutineScope = TestCoroutineScope(testDispatcher)
     private val repository = mock<DummyObjectRepository>()
     private val viewModel  by lazy { MainViewModel(repository) }
-
     private val observerDummyObjects: Observer<Resource<List<DummyObject>?>> = mock()
-
 
     @Rule
     var rule: TestRule = InstantTaskExecutorRule()
@@ -53,6 +58,35 @@ class MainViewModelTest {
         verify(repository).getDummyObjects()
         // Changes two times , loading and success
         verify(observerDummyObjects, times(2)).onChanged(any())
+
+        verify(observerDummyObjects, times(1))
+            .onChanged(ArgumentMatchers.any(Resource.Loading::class.java) as Resource<List<DummyObject>?>?)
+        verify(observerDummyObjects, times(1))
+            .onChanged(ArgumentMatchers.any(Resource.Success::class.java) as Resource<List<DummyObject>?>?)
+        verify(observerDummyObjects, never())
+            .onChanged(ArgumentMatchers.any(Resource.Error::class.java) as Resource<List<DummyObject>?>?)
     }
 
+    @Test
+    fun `should fail when fetchFromServer throws exception`()  = testCoroutineScope.runBlockingTest {
+        val error = Error()
+        whenever(repository.getDummyObjects()).thenThrow(error)
+
+        // act
+        viewModel.getData()
+        advanceTimeBy(500)
+
+        // assert - Verify if this method is called
+        verify(repository).getDummyObjects()
+
+        // Changes two times , loading and error
+        verify(observerDummyObjects, times(2)).onChanged(any())
+
+        verify(observerDummyObjects, times(1))
+            .onChanged(ArgumentMatchers.any(Resource.Loading::class.java) as Resource<List<DummyObject>?>?)
+        verify(observerDummyObjects, times(1))
+            .onChanged(ArgumentMatchers.any(Resource.Error::class.java) as Resource<List<DummyObject>?>?)
+        verify(observerDummyObjects, never())
+            .onChanged(ArgumentMatchers.any(Resource.Success::class.java) as Resource<List<DummyObject>?>?)
+    }
 }
