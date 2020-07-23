@@ -17,15 +17,11 @@ class MainViewModel(private val dummyObjectRepository: DummyObjectRepository) : 
     }
 
     var dummyObjects = MutableLiveData<Resource<List<DummyObject>?>>()
-    var error = MutableLiveData<String>()
-    var progress = MutableLiveData<Boolean>()
 
     fun getData() {
         dummyObjects.postValue(Resource.Loading(null))
-        progress.value = true
         viewModelScope.launch(coroutineExceptionHandler) {
             val result = runCatching { dummyObjectRepository.getDummyObjects() }
-            progress.value = false
             result.onSuccess { responseDummyObjects ->
                 dummyObjects.postValue(responseDummyObjects)
             }.onFailure { error ->

@@ -18,7 +18,6 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
 import org.junit.runner.RunWith
-import org.mockito.verification.VerificationMode
 import org.powermock.api.mockito.PowerMockito
 import org.powermock.core.classloader.annotations.PrepareForTest
 import org.powermock.modules.junit4.PowerMockRunner
@@ -33,8 +32,8 @@ class MainViewModelTest {
     private val repository = mock<DummyObjectRepository>()
     private val viewModel  by lazy { MainViewModel(repository) }
 
-    private val observerError: Observer<String> = mock()
     private val observerDummyObjects: Observer<Resource<List<DummyObject>?>> = mock()
+
 
     @Rule
     var rule: TestRule = InstantTaskExecutorRule()
@@ -43,12 +42,11 @@ class MainViewModelTest {
     fun setUp() {
         PowerMockito.mockStatic(Log::class.java)
         Dispatchers.setMain(testDispatcher)
-        viewModel.error.observeForever(observerError)
         viewModel.dummyObjects.observeForever(observerDummyObjects)
     }
 
     @Test
-    fun testGetDataShowsResult() = testCoroutineScope.runBlockingTest {
+    fun `should success when fetchFromServer returns proper data`() = testCoroutineScope.runBlockingTest {
         whenever(repository.getDummyObjects()).thenReturn(Resource.Success(listOf(DummyObject(1, 1, "Title", "Body"))))
         viewModel.getData()
         advanceTimeBy(500)
@@ -56,4 +54,5 @@ class MainViewModelTest {
         // Changes two times , loading and success
         verify(observerDummyObjects, times(2)).onChanged(any())
     }
+
 }

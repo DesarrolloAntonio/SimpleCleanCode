@@ -1,5 +1,6 @@
 package com.desarrollodroide.simplecleancode.api
 
+import com.desarrollodroide.simplecleancode.model.DummyObject
 import com.google.gson.stream.MalformedJsonException
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse
@@ -20,6 +21,8 @@ class ApiServiceTest {
 
 /** Using Koin for inject ApiService
 
+    class ApiServiceKoinTest: KoinTest {
+
     val service: ApiService by inject()
     private lateinit var server: MockWebServer
 
@@ -34,6 +37,7 @@ class ApiServiceTest {
         server.close()
         stopKoin()
     }
+    ...
 
 **/
 
@@ -77,17 +81,6 @@ class ApiServiceTest {
         server.enqueue( MockResponse().setResponseCode(HttpURLConnection.HTTP_BAD_REQUEST) )
         val response = service.getDataFromServer().body()
         assertNull(response)
-    }
-
-    @Test
-    fun testErrorDeserializeJson() = runBlocking<Unit> {
-        val invalidJson = "blah"
-        try {
-            server.enqueue( MockResponse().setBody(invalidJson) )
-            val response = service.getDataFromServer().body()
-        } catch (exception: Exception){
-            assertTrue(exception.cause is MalformedJsonException)
-        }
     }
 }
 

@@ -40,14 +40,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
-
-        viewModel.error.observe(this, Observer { error->
-            // Manage error
-        })
-
-        viewModel.progress.observe(this, Observer { loading->
-            progressCard.visibility = if (loading) View.VISIBLE else View.INVISIBLE
-        })
     }
 
     private fun createUI(){
