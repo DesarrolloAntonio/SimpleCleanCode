@@ -7,8 +7,7 @@ A very simple sample project that uses MVVM architecture with dependency injecti
 
 In this first release, the project doesn't store local database 
 
-Project
------
+## Project
 * `ApiService.kt` - Web Server where retrieve the JSON data.
 * `DummyObject.kt` - Data model with the information to show in the table.
 * `Resource.kt` - A generic sealed class that contains data and status about loading this data.
@@ -20,6 +19,13 @@ Project
 * `MainViewModel.kt` - ViewModel of the MainActivity, prepare and manage the data for a UI component
 * `CleanApp.kt` - An application class to init Koin
 
+## Unit Test
+* `ApiServiceTest.kt` - Unit test for the Api with [MockWebServer](https://github.com/square/okhttp/tree/master/mockwebserver)
+* `MainViewModelTest.kt` - Unit test for the request in ViewModel with [PowerMock](https://github.com/powermock/powermock)
+
+## Next updates
+* Add Room to store local database
+* UI Test
 
 ## Developed By
 
