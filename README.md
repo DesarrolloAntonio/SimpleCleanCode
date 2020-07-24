@@ -5,6 +5,8 @@ A very simple sample project that uses MVVM architecture with dependency injecti
 ## Architecture
 ![Logo](./images/mvvm-architecture.png) 
 
+In this first release, the project doesn't store local database 
+
 Project
 -----
 * `ApiService.kt` - Web Server where retrieve the JSON data.
