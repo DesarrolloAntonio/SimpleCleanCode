@@ -1,7 +1,5 @@
 package com.desarrollodroide.simplecleancode.api
 
-import com.desarrollodroide.simplecleancode.model.DummyObject
-import com.google.gson.stream.MalformedJsonException
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -13,7 +11,6 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.lang.Exception
 import java.net.HttpURLConnection
 
 @RunWith(JUnit4::class)
