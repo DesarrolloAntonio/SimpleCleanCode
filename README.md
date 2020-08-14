@@ -13,8 +13,9 @@ In this first release, the project doesn't store local database
 * `Resource.kt` - A generic sealed class that contains data and status about loading this data.
 * `DummyObjectRepository.kt` - Interface for repository pattern.
 * `DummyObjectRepositoryImpl.kt` - Implementation of the repository pattern
-* `AppModule.kt`, `NetworkingModule.kt`, `PresenterModule.kt` - Koin classes
+* `AppModule.kt`, `NetworkingModule.kt`, `PresenterModule.kt`, `FragmentModule.kt` - Koin classes
 * `MainActivity.kt` - Main activity of the project
+* `MainFragment.kt` - The fragment of the MainActivity 
 * `MainAdapter.kt` - Adapter for the RecyclerView
 * `MainViewModel.kt` - ViewModel of the MainActivity, prepare and manage the data for a UI component
 * `CleanApp.kt` - An application class to init Koin

@@ -9,7 +9,7 @@ import com.desarrollodroide.simplecleancode.model.Resource
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val dummyObjectRepository: DummyObjectRepository) : ViewModel() {
+class MainFragmentViewModel(private val dummyObjectRepository: DummyObjectRepository) : ViewModel() {
 
     private val coroutineExceptionHandler = CoroutineExceptionHandler { context, throwable ->
         throwable.printStackTrace()

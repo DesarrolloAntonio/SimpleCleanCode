@@ -31,7 +31,7 @@ class MainViewModelTest {
     private val testDispatcher = TestCoroutineDispatcher()
     private val testCoroutineScope = TestCoroutineScope(testDispatcher)
     private val repository = mock<DummyObjectRepository>()
-    private val viewModel  by lazy { MainViewModel(repository) }
+    private val viewModel  by lazy { MainFragmentViewModel(repository) }
     private val observerDummyObjects: Observer<Resource<List<DummyObject>?>> = mock()
 
     @Rule
