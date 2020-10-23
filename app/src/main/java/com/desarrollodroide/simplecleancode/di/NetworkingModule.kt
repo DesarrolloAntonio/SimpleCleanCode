@@ -13,7 +13,7 @@ fun networkingModule() = module {
 
   single {
     OkHttpClient.Builder()
-      .addInterceptor(HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY})
+      .addInterceptor(HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY })
       .build()
   }
 

@@ -1,3 +1,11 @@
 package com.desarrollodroide.simplecleancode.model
 
-data class DummyObject (val userId: Int, val id: Int, val title: String, val body: String)
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "table_dummy_objects")
+data class DummyObject (
+    @PrimaryKey val id: Int,
+    val userId: Int,
+    val title: String,
+    val body: String)

@@ -1,6 +1,6 @@
 ## SimpleCleanCode
 
-A very simple sample project that uses MVVM architecture with dependency injection, livedata, repository pattern, retrofit, testing...  
+A very simple sample project that uses MVVM architecture with Dependency Injection, LiveData, Repository Pattern, FragmentFactory, Retrofit, Testing...  
 
 ## Architecture
 ![Logo](./images/mvvm-architecture.png) 
@@ -24,9 +24,8 @@ In this first release, the project doesn't store local database
 * `ApiServiceTest.kt` - Unit test for the Api with [MockWebServer](https://github.com/square/okhttp/tree/master/mockwebserver)
 * `MainViewModelTest.kt` - Unit test for the request in ViewModel with [PowerMock](https://github.com/powermock/powermock)
 
-## Next updates
-* Add Room to store local database
-* UI Test
+## UI Test
+* `MainFragmentTest.kt` - UI test for MainActivity with Espresso [PowerMock](https://developer.android.com/training/testing/espresso)
 
 ## Developed By
 
