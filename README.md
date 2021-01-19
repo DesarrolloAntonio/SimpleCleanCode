@@ -5,7 +5,6 @@ A very simple sample project that uses MVVM architecture with Dependency Injecti
 ## Architecture
 ![Logo](./images/mvvm-architecture.png) 
 
-In this first release, the project doesn't store local database 
 
 ## Project
 * `ApiService.kt` - Web Server where retrieve the JSON data.
@@ -19,6 +18,8 @@ In this first release, the project doesn't store local database
 * `MainAdapter.kt` - Adapter for the RecyclerView
 * `MainViewModel.kt` - ViewModel of the MainActivity, prepare and manage the data for a UI component
 * `CleanApp.kt` - An application class to init Koin
+* `DummyObjectDao.kt` - An interface for interacting with the data in your app's database
+* `DummyObjectDatabase.kt` - Database implementation
 
 ## Unit Test
 * `ApiServiceTest.kt` - Unit test for the Api with [MockWebServer](https://github.com/square/okhttp/tree/master/mockwebserver)

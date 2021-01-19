@@ -38,18 +38,19 @@ android {
 dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     def koin_version = "2.1.5"
-    def room_version = "2.2.5"
-    def coroutines_version = "1.3.0"
+    def room_version = "2.2.6"
+    def coroutines_version = "1.3.3"
     def androidx_test_espresso = "3.3.0"
     def fragment_version = "1.2.4"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //noinspection GradleDependency
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.core:core-ktx:1.3.1'
+    implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
 
     // Koin
@@ -61,7 +62,7 @@ dependencies {
     // Retrofit
     implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.6.0'
 
     // Room
     implementation "androidx.room:room-runtime:$room_version"
@@ -74,7 +75,7 @@ dependencies {
         // exclude androidx.test:core while fragment_testing depends on 1.1.0
         exclude group: 'androidx.test', module: 'core'
     }
-    implementation "androidx.fragment:fragment:$fragment_version"
+    implementation "androidx.fragment:fragment-ktx:$fragment_version"
 
     // Test
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
