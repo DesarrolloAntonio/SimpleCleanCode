@@ -26,7 +26,7 @@ A very simple sample project that uses MVVM architecture with Dependency Injecti
 * `MainViewModelTest.kt` - Unit test for the request in ViewModel with [PowerMock](https://github.com/powermock/powermock)
 
 ## UI Test
-* `MainFragmentTest.kt` - UI test for MainActivity with Espresso [PowerMock](https://developer.android.com/training/testing/espresso)
+* `MainFragmentTest.kt` - UI test for MainActivity with [Espresso](https://developer.android.com/training/testing/espresso)
 
 ## Developed By
 
